@@ -49,7 +49,7 @@ jobs:
         $json | ConvertTo-Json -Depth 10 | Set-Content versioninfo.json
 
     - name: Inject version info
-      run: goversioninfo -o=rsrc.syso versioninfo.json
+      run: goversioninfo -o="rsrc.syso" versioninfo.json
 
     - name: Build .exe
       run: go build -ldflags="-s -w -H windowsgui" -o PowerModeSwitcher.exe

@@ -31,22 +31,30 @@ jobs:
         echo "VERSION=${GITHUB_REF#refs/tags/v}" >> $env:GITHUB_ENV
 
     - name: Prepare versioninfo.json
+      shell: pwsh
       run: |
+        $v = "${{ env.VERSION }}".TrimStart("v").Split(".")
         $json = Get-Content versioninfo.json | ConvertFrom-Json
-        $v = "${{ env.VERSION }}".Split(".")
-        $json.FixedFileInfo.FileVersion.Major = [int]$v[0]
-        $json.FixedFileInfo.FileVersion.Minor = [int]$v[1]
-        $json.FixedFileInfo.FileVersion.Patch = [int]$v[2]
-        $json.FixedFileInfo.FileVersion.Build = 0
 
-        $json.FixedFileInfo.ProductVersion.Major = [int]$v[0]
-        $json.FixedFileInfo.ProductVersion.Minor = [int]$v[1]
-        $json.FixedFileInfo.ProductVersion.Patch = [int]$v[2]
-        $json.FixedFileInfo.ProductVersion.Build = 0
+        $json.FixedFileInfo.FileVersion = @{
+          Major = [int]$v[0]
+          Minor = [int]$v[1]
+          Patch = [int]$v[2]
+          Build = 0
+        }
+
+        $json.FixedFileInfo.ProductVersion = @{
+          Major = [int]$v[0]
+          Minor = [int]$v[1]
+          Patch = [int]$v[2]
+          Build = 0
+        }
 
         $json.StringFileInfo.FileVersion = "${{ env.VERSION }}"
         $json.StringFileInfo.ProductVersion = "${{ env.VERSION }}"
+
         $json | ConvertTo-Json -Depth 10 | Set-Content versioninfo.json
+
 
     - name: Inject version info
       run: goversioninfo -o="rsrc.syso" versioninfo.json

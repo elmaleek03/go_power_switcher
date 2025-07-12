@@ -64,8 +64,8 @@ jobs:
 
     - name: Rename executable with version tag
       run: |
-        TAG="${{ github.ref_name }}"  # e.g. v0.9.6
-        cp PowerModeSwitcher.exe PowerModeSwitcher_${TAG}.exe
+      $tag = "${{ github.ref_name }}"   # e.g. v0.9.6
+      Rename-Item -Path "PowerModeSwitcher.exe" -NewName "PowerModeSwitcher_$tag.exe"
 
     - name: Upload release binary
       uses: softprops/action-gh-release@v2

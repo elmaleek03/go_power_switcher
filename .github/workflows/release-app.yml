@@ -62,10 +62,16 @@ jobs:
     - name: Build .exe
       run: go build -ldflags="-s -w -H windowsgui" -o PowerModeSwitcher.exe
 
+    - name: Rename executable with version tag
+      run: |
+        TAG="${{ github.ref_name }}"  # e.g. v0.9.6
+        cp PowerModeSwitcher.exe PowerModeSwitcher_${TAG}.exe
+
     - name: Upload release binary
       uses: softprops/action-gh-release@v2
       with:
-        files: PowerModeSwitcher.exe
+        files: PowerModeSwitcher_${{ github.ref_name }}.exe
         tag_name: ${{ github.ref_name }}
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+

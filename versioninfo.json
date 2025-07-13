@@ -2,14 +2,14 @@
     "FixedFileInfo": {
         "FileVersion": {
             "Major": 0,
-            "Minor": 9,
-            "Patch": 5,
+            "Minor": 0,
+            "Patch": 0,
             "Build": 0
         },
         "ProductVersion": {
             "Major": 0,
-            "Minor": 9,
-            "Patch": 5,
+            "Minor": 0,
+            "Patch": 0,
             "Build": 0
         },
         "FileFlagsMask": "3f",
@@ -22,12 +22,12 @@
         "Comments": "",
         "CompanyName": "Akinos",
         "FileDescription": "Power Mode Switcher",
-        "FileVersion": "0.9.5",
+        "FileVersion": "0.0.0",
         "InternalName": "PowerModeSwitcher",
         "LegalCopyright": "© 2025 Akinos",
         "OriginalFilename": "PowerModeSwitcher.exe",
         "ProductName": "Power Mode Switcher",
-        "ProductVersion": "0.9.5"
+        "ProductVersion": "0.0.0"
     },
     "VarFileInfo": {
         "Translation": {

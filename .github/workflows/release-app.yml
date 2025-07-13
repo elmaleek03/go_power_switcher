@@ -30,7 +30,7 @@ jobs:
         echo "TAG=${GITHUB_REF#refs/tags/}" >> $env:GITHUB_ENV
         echo "VERSION=${GITHUB_REF#refs/tags/v}" >> $env:GITHUB_ENV
 
-        - name: Prepare versioninfo.json
+    - name: Prepare versioninfo.json
       shell: pwsh
       run: |
         $v = "${{ env.VERSION }}".TrimStart("v").Split(".")
